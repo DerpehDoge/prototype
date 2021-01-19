@@ -4,13 +4,6 @@ import Link from "next/link";
 export default function HomePage() {
     return (
         <motion.div
-            whileHover={{
-                backgroundColor: "#93C5FD",
-            }}
-            transition={{
-                duration: 0.25,
-                type: "tween",
-            }}
             initial={{
                 opacity: 0.5,
                 x: -20,
