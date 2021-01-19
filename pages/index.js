@@ -1,10 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
+import React from 'react';
 import { motion } from "framer-motion";
 
 export default function Home() {
+
     return (
-        <div className="dark flex justify-center items-center h-screen w-screen dark:bg-gray-700 dark:text-white overflow-hidden">
+        <div className="dark flex justify-center items-center h-screen w-screen dark:bg-gray-900 dark:text-white overflow-hidden">
             <motion.h1
                 initial={{ opacity: 0.8, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -14,7 +16,7 @@ export default function Home() {
                 transition={{
                     duration: 0.25,
                 }}
-                className="text-3xl dark:bg-white dark: text-black  rounded-xl shadow p-10"
+                className="text-3xl dark:bg-white dark: text-black rounded-xl shadow p-10"
             >
                 <Link href="/name">
                     <a>
@@ -50,5 +52,6 @@ export default function Home() {
                 <h1>Return home.</h1>
             </motion.div>
         </div>
-    );
+    )
+  
 }

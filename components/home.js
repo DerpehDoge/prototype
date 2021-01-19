@@ -16,7 +16,7 @@ export default function HomePage() {
             className="absolute bottom-0 left-0 flex justify-left p-5 bg-gray-200 color-black rounded-tr-lg text-black"
         >
             <Link href="/">
-                <a>
+                <a className="">
                     <i className="fas fa-home"></i>
                     <h1>Return home.</h1>
                 </a>
