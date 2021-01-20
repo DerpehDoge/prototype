@@ -1,10 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
-import React from 'react';
+import React from "react";
 import { motion } from "framer-motion";
 
 export default function Home() {
-
     return (
         <div className="dark flex justify-center items-center h-screen w-screen dark:bg-gray-900 dark:text-white overflow-hidden">
             <motion.h1
@@ -52,6 +51,5 @@ export default function Home() {
                 <h1>Return home.</h1>
             </motion.div>
         </div>
-    )
-  
+    );
 }

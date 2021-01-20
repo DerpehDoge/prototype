@@ -13,9 +13,8 @@ export default function HomePage() {
                 opacity: 1,
             }}
             transition={{
-                type: "spring",
-                stiffness: 100,
-                duration: 0.1,
+                type: "tween",
+                duration: 0.5,
             }}
             layoutId="homeButton"
             className="absolute bottom-0 left-0 flex justify-left p-5 bg-gray-200 color-black rounded-tr-lg text-black"
