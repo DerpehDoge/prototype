@@ -1,5 +1,5 @@
 import { Link } from "next/link";
 
 export default function NextButton() {
-    return <motion.div></motion.div>;
+    return <h1>hi</h1>;
 }
