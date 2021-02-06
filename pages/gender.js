@@ -8,7 +8,7 @@ export default function Gender(pageProps) {
         <>
             <div className="flex justify-center items-center select-none h-screen dark:bg-black dark:text-white">
                 <h1 className="text-3xl">What's your gender?</h1>
-                <Choice choose={() => }>Woman</Choice>
+                <Choice choose={() => {}}>Woman</Choice>
                 <HomeButton></HomeButton>
             </div>
         </>
