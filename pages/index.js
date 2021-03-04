@@ -23,16 +23,16 @@ export default class HomePage extends Component {
                     }}
                     className="text-center"
                 >
-                    <motion.h1 layout className="text-5xl" layoutId="title">
-                        Welcome.
-                    </motion.h1>
+                    {this.props.name ? (
+                        <h1 className="text-5xl">
+                            Welcome back {this.props.name}.
+                        </h1>
+                    ) : (
+                        <h1 className="text-5xl">Welcome.</h1>
+                    )}
                     <h3 className="text-xl my-4">
                         You've completed{" "}
-                        <span className="m-0 p-0 font-mono text-yellow-200">
-                            {this.props.sections == 0
-                                ? "no"
-                                : this.props.sections}{" "}
-                        </span>
+                        {this.props.sections == 0 ? "no" : this.props.sections}{" "}
                         sections.
                     </h3>
                     {this.props.lastSection ? (

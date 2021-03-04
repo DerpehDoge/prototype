@@ -3,30 +3,56 @@ import React from "react";
 import nookies from "nookies";
 import { parseCookies, setCookie } from "nookies";
 import Link from "next/link";
+import anime from "animejs";
+import { useRouter } from "next/router";
+import Router from "next/router";
 
 export default class A extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    finishSection() {
+    finishSection(event) {
+        event.preventDefault();
         let cookies = parseCookies();
         setCookie(null, "sections", parseInt(cookies.sections) + 1, {
             maxAge: 30 * 24 * 60 * 60,
             path: "/",
         });
+        console.log("section finished");
+        anime({
+            targets: ".nTex",
+            opacity: 0,
+        });
+        anime({
+            targets: "#formKEK",
+            scale: 2,
+        });
+        setTimeout(() => Router.push("/"), 1000);
+    }
+
+    setName(event) {
+        setCookie(null, "name", event.target.value, {
+            maxAge: 30 * 24 * 60 * 60,
+            path: "/",
+        });
+        console.log(event.target.value);
     }
 
     render() {
         return (
             <>
-                <motion.h1>Welcome.</motion.h1>
-                <button onClick={this.finishSection}>
-                    Finish this section.
-                </button>
-                <Link href="/">
-                    <a>honk</a>
-                </Link>
+                <h1 className="text-5xl nTex">Hey there.</h1>
+                <h2 className="my-4 text-2xl nTex">What's your name?</h2>
+                <form id="formKEK" onSubmit={this.finishSection}>
+                    <input
+                        type="text"
+                        className="my-4 bg-transparent text-white text-center font-mono border-opacity-25 p-2 text-2xl border-blue-500 border-2 rounded-md outline-none"
+                        autoComplete="off"
+                        placeholder={this.props.name}
+                        onChange={this.setName}
+                    />
+                </form>
             </>
         );
     }
@@ -39,5 +65,5 @@ export async function getServerSideProps(ctx) {
         path: "/",
     });
     let cookies = nookies.get(ctx);
-    return { props: {} };
+    return { props: cookies };
 }
