@@ -31,7 +31,7 @@ export default class A extends React.Component {
             duration: 1000,
             y: -60,
         });
-        setTimeout(() => Router.replace("/"), 1500);
+        setTimeout(() => Router.replace("/intro/gender"), 1500);
     }
 
     setName(event) {
