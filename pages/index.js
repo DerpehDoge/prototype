@@ -41,7 +41,15 @@ export default class HomePage extends Component {
                 >
                     {this.props.name ? (
                         <h1 className="text-5xl">
-                            Welcome back {this.props.name}.
+                            Welcome back{" "}
+                            {this.props.gender
+                                ? this.props.gender == "Male"
+                                    ? "Mr. "
+                                    : this.props.gender == "Female"
+                                    ? "Mrs. "
+                                    : ""
+                                : ""}
+                            {this.props.name}.
                         </h1>
                     ) : (
                         <h1 className="text-5xl">Welcome.</h1>
