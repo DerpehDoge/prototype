@@ -8,13 +8,14 @@
         "start": "node server.js"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.2",
         "autoprefixer": "^10.2.1",
         "framer-motion": "^3.2.1",
         "next": "10.0.5",
+        "nookies": "^2.5.2",
         "postcss": "^8.2.4",
         "react": "next",
         "react-dom": "next",
+        "react-flip-toolkit": "^7.0.13",
         "tailwindcss": "^2.0.2"
     }
 }

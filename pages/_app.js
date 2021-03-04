@@ -1,15 +1,14 @@
 import "tailwindcss/tailwind.css";
-import "@fortawesome/fontawesome-free/js/fontawesome";
-import "@fortawesome/fontawesome-free/js/solid";
-import "@fortawesome/fontawesome-free/js/regular";
-import "@fortawesome/fontawesome-free/js/brands";
+import { Flipper, Flipped } from "react-flip-toolkit";
 import Head from "next/head";
-import { AnimateSharedLayout } from "framer-motion";
+import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
     return (
         <AnimateSharedLayout>
-            <Component {...pageProps} />
+            <motion.div className="flex flex-col justify-center items-center select-none h-screen dark:bg-black dark:text-white">
+                <Component {...pageProps} />
+            </motion.div>
         </AnimateSharedLayout>
     );
 }

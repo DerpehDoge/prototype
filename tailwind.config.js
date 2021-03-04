@@ -5,11 +5,7 @@ module.exports = {
     },
     darkMode: "media", // or 'media' or 'class'
     theme: {
-        extend: {
-            zIndex: {
-                "-10": "-10",
-            },
-        },
+        extend: {},
     },
     variants: {
         extend: {},
