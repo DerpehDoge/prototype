@@ -27,8 +27,11 @@ export default class A extends React.Component {
         anime({
             targets: "#formKEK",
             scale: 2,
+            easing: "easeOutExpo",
+            duration: 1000,
+            y: -60,
         });
-        setTimeout(() => Router.push("/"), 1000);
+        setTimeout(() => Router.replace("/"), 1500);
     }
 
     setName(event) {

@@ -15,8 +15,8 @@
         "nookies": "^2.5.2",
         "postcss": "^8.2.4",
         "react": "next",
+        "react-confetti": "^6.0.1",
         "react-dom": "next",
-        "react-flip-toolkit": "^7.0.13",
         "tailwindcss": "^2.0.2"
     }
 }

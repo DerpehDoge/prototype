@@ -1,5 +1,4 @@
 import "tailwindcss/tailwind.css";
-import { Flipper, Flipped } from "react-flip-toolkit";
 import Head from "next/head";
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion";
 

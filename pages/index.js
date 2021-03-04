@@ -2,10 +2,26 @@ import { Component } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import nookies from "nookies";
+import Confetti from "react-confetti";
 
 export default class HomePage extends Component {
     constructor(props) {
         super(props);
+        this.state = { width: 0, height: 0 };
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    }
+
+    componentDidMount() {
+        this.updateWindowDimensions();
+        window.addEventListener("resize", this.updateWindowDimensions);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updateWindowDimensions);
+    }
+
+    updateWindowDimensions() {
+        this.setState({ width: window.innerWidth, height: window.innerHeight });
     }
 
     render() {
@@ -39,11 +55,9 @@ export default class HomePage extends Component {
                         <Link href={this.props.lastSection}>
                             <a>
                                 <motion.span
-                                    whileHover={{
-                                        scale: 1.3,
-                                    }}
+                                    className="text-xl"
                                     whileTap={{
-                                        scale: 0.9,
+                                        fontSize: "16px",
                                     }}
                                 >
                                     Continue back to{" "}
@@ -54,18 +68,33 @@ export default class HomePage extends Component {
                     ) : (
                         <Link href="/intro/name">
                             <motion.a
-                                whileHover={{
-                                    scale: 1.1,
-                                }}
+                                className="text-xl"
                                 whileTap={{
-                                    scale: 0.9,
+                                    fontSize: "16px",
                                 }}
                             >
-                                Shall we begin?
+                                Let's start.
                             </motion.a>
                         </Link>
                     )}
                 </motion.div>
+                <Confetti
+                    height={this.state.height}
+                    width={this.state.width}
+                    initialVelocityX={6}
+                    recycle={false}
+                    numberOfPieces={100}
+                    colors={[
+                        "#de6161",
+                        "#e0516e",
+                        "#de4380",
+                        "#d53994",
+                        "#c538ab",
+                        "#ab3fc2",
+                        "#814bd8",
+                        "#2657eb",
+                    ]}
+                />
                 <br />
             </>
         );
