@@ -15,10 +15,11 @@ export default class A extends React.Component {
     finishSection(event) {
         event.preventDefault();
         let cookies = parseCookies();
-        setCookie(null, "sections", parseInt(cookies.sections) + 1, {
-            maxAge: 30 * 24 * 60 * 60,
-            path: "/",
-        });
+        let sections = cookies.sections.split(",");
+        if (sections.includes("name") == false) {
+            sections.push("name");
+        }
+        setCookie(null, "sections", sections.join(","));
         console.log("section finished");
         anime({
             targets: ".nTex",
@@ -31,7 +32,7 @@ export default class A extends React.Component {
             duration: 1000,
             y: -60,
         });
-        setTimeout(() => Router.replace("/intro/gender"), 1500);
+        setTimeout(() => Router.replace("/intro/gender"), 1000);
     }
 
     setName(event) {
@@ -62,11 +63,11 @@ export default class A extends React.Component {
 }
 
 export async function getServerSideProps(ctx) {
-    console.log();
     nookies.set(ctx, "lastSection", "/intro/name", {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
     });
     let cookies = nookies.get(ctx);
+    console.log(cookies);
     return { props: cookies };
 }

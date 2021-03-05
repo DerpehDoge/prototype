@@ -1,8 +1,37 @@
 import { Component } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import nookies from "nookies";
+import nookies, { setCookie } from "nookies";
 import Confetti from "react-confetti";
+import Router from "next/router";
+import glob from "glob";
+
+function CondConf(props) {
+    if (props.cookies.confetti) {
+        console.log("reached");
+        return (
+            <Confetti
+                height={props.height}
+                width={props.width}
+                initialVelocityX={3}
+                recycle={false}
+                numberOfPieces={400}
+                // colors={[
+                //     "#de6161",
+                //     "#e0516e",
+                //     "#de4380",
+                //     "#d53994",
+                //     "#c538ab",
+                //     "#ab3fc2",
+                //     "#814bd8",
+                //     "#2657eb",
+                // ]}
+            />
+        );
+    } else {
+        return null;
+    }
+}
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -27,6 +56,11 @@ export default class HomePage extends Component {
     render() {
         return (
             <>
+                <CondConf
+                    cookies={this.props}
+                    height={this.state.height}
+                    width={this.state.width}
+                ></CondConf>
                 <motion.div
                     initial={{
                         opacity: 0,
@@ -42,13 +76,26 @@ export default class HomePage extends Component {
                     {this.props.name ? (
                         <h1 className="text-5xl">
                             Welcome back{" "}
-                            {this.props.gender
-                                ? this.props.gender == "Male"
-                                    ? "Mr. "
-                                    : this.props.gender == "Female"
-                                    ? "Mrs. "
-                                    : ""
-                                : ""}
+                            {this.props.gender ? (
+                                this.props.gender == "Male" ? (
+                                    "Mr. "
+                                ) : this.props.gender == "Female" ? (
+                                    "Mrs. "
+                                ) : this.props.gender == "Attack Helicopter" ? (
+                                    "heli "
+                                ) : this.props.gender == "Other" ? (
+                                    <>
+                                        <span className="line-through">
+                                            mr/mrs.
+                                        </span>
+                                        <span> </span>
+                                    </>
+                                ) : (
+                                    ""
+                                )
+                            ) : (
+                                ""
+                            )}
                             {this.props.name}.
                         </h1>
                     ) : (
@@ -56,23 +103,40 @@ export default class HomePage extends Component {
                     )}
                     <h3 className="text-xl my-4">
                         You've completed{" "}
-                        {this.props.sections == 0 ? "no" : this.props.sections}{" "}
-                        sections.
+                        {this.props.sections.split(",").length - 1} sections.
                     </h3>
                     {this.props.lastSection ? (
-                        <Link href={this.props.lastSection}>
-                            <a>
-                                <motion.span
-                                    className="text-xl"
-                                    whileTap={{
-                                        fontSize: "16px",
-                                    }}
-                                >
-                                    Continue back to{" "}
-                                    {this.props.lastSection.split("/").pop()}...
-                                </motion.span>
-                            </a>
-                        </Link>
+                        <div>
+                            <Link href="/intro/name">
+                                <a>
+                                    <motion.span
+                                        className="text-xl"
+                                        whileTap={{
+                                            fontSize: "16px",
+                                        }}
+                                    >
+                                        Return back to beginning?
+                                    </motion.span>
+                                </a>
+                            </Link>
+                            <br></br>
+                            <Link href={this.props.lastSection}>
+                                <a>
+                                    <motion.span
+                                        className="text-xl"
+                                        whileTap={{
+                                            fontSize: "16px",
+                                        }}
+                                    >
+                                        Go back to{" "}
+                                        {this.props.lastSection
+                                            .split("/")
+                                            .pop()}
+                                        ...
+                                    </motion.span>
+                                </a>
+                            </Link>
+                        </div>
                     ) : (
                         <Link href="/intro/name">
                             <motion.a
@@ -86,23 +150,6 @@ export default class HomePage extends Component {
                         </Link>
                     )}
                 </motion.div>
-                <Confetti
-                    height={this.state.height}
-                    width={this.state.width}
-                    initialVelocityX={6}
-                    recycle={false}
-                    numberOfPieces={100}
-                    colors={[
-                        "#de6161",
-                        "#e0516e",
-                        "#de4380",
-                        "#d53994",
-                        "#c538ab",
-                        "#ab3fc2",
-                        "#814bd8",
-                        "#2657eb",
-                    ]}
-                />
                 <br />
             </>
         );
@@ -110,17 +157,19 @@ export default class HomePage extends Component {
 }
 
 export async function getServerSideProps(ctx) {
-    // Parse
-    // const cookies = nookies.get(ctx);
-
     let cookies = nookies.get(ctx);
-    if ("sections" in cookies == false) {
-        nookies.set(ctx, "sections", 0, {
-            maxAge: 30 * 24 * 60 * 60,
-            path: "/",
-        });
-        cookies = nookies.get(ctx);
+    console.log(cookies);
+    //setCookie(null, "confetti", true);
+    if ("sections" in cookies) {
+        console.log("sections found :o");
+        return { props: cookies };
+    } else {
+        console.log("sections not found :(");
+        nookies.set(ctx, "sections", "");
+        return {
+            props: {
+                sections: "",
+            },
+        };
     }
-    // // Set
-    return { props: cookies };
 }
