@@ -26,9 +26,7 @@ export default class Home extends React.Component {
         this.state = {};
     }
     render() {
-        let names = "Male.Female.Attack Helicopter.Prefer not to say.Other".split(
-            "."
-        );
+        let names = "13-25.25-35.35-50.50-60.60+".split(".");
         let classes = "border-blue-200 border-red-200 border-gray-700 border-purple-400 border-yellow-200".split(
             " "
         );
@@ -43,7 +41,7 @@ export default class Home extends React.Component {
                     }}
                 >
                     <h1 className="text-3xl text-yellow-200 pointer-events-none select-none p-3">
-                        What's your gender?
+                        What's your age range?
                     </h1>
                     <br className="select-none" />
                     <ul>
@@ -68,7 +66,7 @@ export default class Home extends React.Component {
                                         this.setState({
                                             selected: a,
                                         });
-                                        setCookie(null, "gender", a, {
+                                        setCookie(null, "age", a, {
                                             maxAge: 30 * 24 * 60 * 60,
                                             path: "/",
                                         });
@@ -95,8 +93,8 @@ export default class Home extends React.Component {
                                 onClick={() => {
                                     let cookies = parseCookies();
                                     let sections = cookies.sections.split(",");
-                                    if (sections.includes("gender") == false) {
-                                        sections.push("gender");
+                                    if (sections.includes("age") == false) {
+                                        sections.push("age");
                                     }
                                     setCookie(
                                         null,
@@ -105,9 +103,7 @@ export default class Home extends React.Component {
                                     );
                                 }}
                             >
-                                <Link href="/intro/age">
-                                    <a>Head to age.</a>
-                                </Link>
+                                <h1>Back home.</h1>
                             </a>
                         </div>
                     </Link>
@@ -119,7 +115,7 @@ export default class Home extends React.Component {
 
 export async function getServerSideProps(ctx) {
     console.log();
-    nookies.set(ctx, "lastSection", "/intro/gender", {
+    nookies.set(ctx, "lastSection", "/intro/age", {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
     });
