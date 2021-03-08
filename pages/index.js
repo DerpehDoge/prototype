@@ -13,6 +13,7 @@ function CondConf(props) {
                 height={props.height}
                 width={props.width}
                 initialVelocityX={3}
+                gravity={0.2}
                 recycle={false}
                 numberOfPieces={400}
                 // colors={[
