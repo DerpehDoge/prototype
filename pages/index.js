@@ -4,7 +4,6 @@ import Link from "next/link";
 import nookies, { setCookie } from "nookies";
 import Confetti from "react-confetti";
 import Router from "next/router";
-import glob from "glob";
 
 function CondConf(props) {
     if (props.cookies.confetti) {
@@ -104,6 +103,9 @@ export default class HomePage extends Component {
                     <h3 className="text-xl my-4">
                         You've completed{" "}
                         {this.props.sections.split(",").length - 1} sections.
+                        <br />
+                        {this.props.confetti &&
+                            "You've completed all your sections!"}
                     </h3>
                     {this.props.lastSection ? (
                         <div>
@@ -162,6 +164,10 @@ export async function getServerSideProps(ctx) {
     //setCookie(null, "confetti", true);
     if ("sections" in cookies) {
         console.log("sections found :o");
+        if (cookies.sections.split(",").length - 1 == 2) {
+            nookies.set(ctx, "confetti", true);
+            cookies.confetti = true;
+        }
         return { props: cookies };
     } else {
         console.log("sections not found :(");
