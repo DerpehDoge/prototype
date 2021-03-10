@@ -42,7 +42,7 @@ export default class Home extends React.Component {
                         opacity: 1,
                     }}
                 >
-                    <h1 className="text-3xl text-yellow-200 pointer-events-none select-none p-3">
+                    <h1 className="text-3xl text-yellow-600 dark:text-yellow-200 pointer-events-none select-none p-3">
                         What's your gender?
                     </h1>
                     <br className="select-none" />
@@ -50,13 +50,24 @@ export default class Home extends React.Component {
                         {names.map((a) => {
                             return (
                                 <motion.li
+                                    drag="x"
+                                    dragConstraints={{
+                                        right: 0,
+                                        left: 0,
+                                    }}
+                                    dragTransition={{
+                                        bounceDamping: 10,
+                                        bounceStiffness: 20,
+                                    }}
+                                    dragElastic={0.2}
                                     key={a}
                                     whileHover={{
                                         originX: 0,
-                                        scale: 1.3,
+                                        scale: 1.1,
                                         color: "#D1FAE5",
+                                        letterSpacing: "1.2px",
                                     }}
-                                    className={`my-4 select-none cursor-pointer border-l-4 pl-5 text-2xl ${
+                                    className={`my-4 select-none font-mono cursor-pointer border-l-4 pl-5 text-2xl ${
                                         classes[names.indexOf(a)]
                                     }`}
                                     transition={{
@@ -78,7 +89,7 @@ export default class Home extends React.Component {
                                         className={
                                             this.state.selected == a
                                                 ? "text-black dark:text-white"
-                                                : "text-gray-600 dark:text-gray-400"
+                                                : `text-gray-600 dark:text-gray-400`
                                         }
                                     >
                                         {a}

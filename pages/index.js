@@ -75,8 +75,12 @@ export default class HomePage extends Component {
                 >
                     {this.props.name ? (
                         <h1 className="text-5xl">
-                            Welcome back{" "}
-                            {this.props.gender ? (
+                            {this.props.name == "goose"
+                                ? "honk honk"
+                                : "Welcome back"}
+                            {this.props.name !== "goose" && " "}
+                            {this.props.gender &&
+                            this.props.name !== "goose" ? (
                                 this.props.gender == "Male" ? (
                                     "Mr. "
                                 ) : this.props.gender == "Female" ? (
@@ -96,7 +100,7 @@ export default class HomePage extends Component {
                             ) : (
                                 ""
                             )}
-                            {this.props.name}.
+                            {this.props.name !== "goose" && this.props.name}.
                         </h1>
                     ) : (
                         <h1 className="text-5xl">Welcome.</h1>
@@ -152,6 +156,16 @@ export default class HomePage extends Component {
                             </motion.a>
                         </Link>
                     )}
+                    <br />
+                    <Link href="/data">
+                        <motion.a
+                            whileTap={{
+                                scale: 0.8,
+                            }}
+                        >
+                            wanna see the data?
+                        </motion.a>
+                    </Link>
                 </motion.div>
                 <br />
             </>
@@ -161,11 +175,10 @@ export default class HomePage extends Component {
 
 export async function getServerSideProps(ctx) {
     let cookies = nookies.get(ctx);
-    console.log(cookies);
     //setCookie(null, "confetti", true);
     if ("sections" in cookies) {
         console.log("sections found :o");
-        if (cookies.sections.split(",").length - 1 >= 3) {
+        if (cookies.sections.split(",").length - 1 >= 4) {
             nookies.set(ctx, "confetti", true);
             cookies.confetti = true;
         }

@@ -23,16 +23,16 @@ export default class A extends React.Component {
         console.log("section finished");
         anime({
             targets: ".nTex",
-            opacity: 0,
+            opacity: 0.25,
         });
         anime({
             targets: "#formKEK",
-            scale: 2,
+            scale: 1.5,
             easing: "easeOutExpo",
-            duration: 1000,
+            duration: 500,
             y: -60,
         });
-        setTimeout(() => Router.replace("/intro/gender"), 1000);
+        setTimeout(() => Router.replace("/intro/gender"), 750);
     }
 
     setName(event) {
@@ -51,7 +51,7 @@ export default class A extends React.Component {
                 <form id="formKEK" onSubmit={this.finishSection}>
                     <input
                         type="text"
-                        className="my-4 bg-transparent text-white text-center font-mono border-opacity-25 p-2 text-2xl border-blue-500 border-2 rounded-md outline-none"
+                        className="my-4 bg-transparent dark:text-white text-center font-mono border-opacity-25 p-2 text-2xl border-blue-500 border-2 rounded-md outline-none"
                         autoComplete="off"
                         placeholder={this.props.name}
                         onChange={this.setName}
