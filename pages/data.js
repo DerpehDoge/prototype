@@ -12,9 +12,14 @@ export default class extends Component {
                         Hey there. You are 1 person out of 328.2 million people
                         in the US.
                     </h1>
+                    {/* shower */}
                     {this.props.shower &&
                         this.props.shower !== "I don't have a shower." && (
                             <h2>
+                                <br />
+                                <h1 className="font-mono text-3xl text-blue-300">
+                                    water
+                                </h1>
                                 You mentioned you use a{" "}
                                 <span className="font-mono text-blue-200">
                                     {this.props.shower}
@@ -47,6 +52,66 @@ export default class extends Component {
                                     ).toFixed(2)}
                                 </span>{" "}
                                 per year just showering.
+                                {this.props.age && (
+                                    <h2>
+                                        <h1>
+                                            You mentioned that you were within
+                                            age range{" "}
+                                            <span className="font-mono text-blue-200">
+                                                {this.props.age}
+                                            </span>
+                                            .
+                                        </h1>
+                                        <h1>
+                                            Assuming that you shower every day
+                                            for every year of your life,
+                                        </h1>
+                                        <h1>
+                                            you would shower{" "}
+                                            <span className="font-mono text-blue-200">
+                                                {this.props.age !== "60+"
+                                                    ? this.props.age.split(
+                                                          "-"
+                                                      )[0] *
+                                                          365 +
+                                                      "-" +
+                                                      this.props.age.split(
+                                                          "-"
+                                                      )[1] *
+                                                          365
+                                                    : 60 * 365 + "+"}
+                                            </span>{" "}
+                                            times.
+                                        </h1>
+                                        <h1>
+                                            This means that you will use{" "}
+                                            <span className="font-mono text-blue-200">
+                                                {this.props.age !== "60+"
+                                                    ? this.props.age.split(
+                                                          "-"
+                                                      )[0] *
+                                                          8 *
+                                                          this.props.shower *
+                                                          365 +
+                                                      "-" +
+                                                      this.props.age.split(
+                                                          "-"
+                                                      )[1] *
+                                                          8 *
+                                                          this.props.shower *
+                                                          365
+                                                    : 60 *
+                                                          8 *
+                                                          this.props.shower *
+                                                          365 +
+                                                      "+"}
+                                            </span>{" "}
+                                            gallons within your lifetime,
+                                            <br /> assuming all previous
+                                            statements are true.
+                                        </h1>
+                                    </h2>
+                                )}
                             </h2>
                         )}
                 </div>

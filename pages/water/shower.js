@@ -31,8 +31,9 @@ export default class Home extends React.Component {
                         the standard is 2.5
                         <Tooltip title="gallons per minute">
                             <h1 className="text-yellow-100 inline">gpm,</h1>
-                        </Tooltip>{" "}
-                        so please choose the nearest option:
+                        </Tooltip>
+                        . If yours is not listed here, please choose the nearest
+                        option.
                     </h3>
                     <br className="select-none" />
                     <ul>
