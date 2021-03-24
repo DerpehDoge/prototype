@@ -178,7 +178,7 @@ export async function getServerSideProps(ctx) {
     //setCookie(null, "confetti", true);
     if ("sections" in cookies) {
         console.log("sections found :o");
-        if (cookies.sections.split(",").length - 1 >= 4) {
+        if (cookies.sections.split(",").length - 1 >= 5) {
             nookies.set(ctx, "confetti", true);
             cookies.confetti = true;
         }

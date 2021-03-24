@@ -1,5 +1,6 @@
 import nookies from "nookies";
 import MultipleChoice from "../../components/MultipleChoice";
+
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -8,22 +9,21 @@ export default class Home extends React.Component {
     render() {
         return (
             <MultipleChoice
-                href="/intro/age"
-                nextText="Let's head to age."
-                cookieName="gender"
-                names="Male.Female.Attack Helicopter.Prefer not to say.Other"
-                classes="border-blue-200 border-red-200 border-gray-700 border-purple-400 border-yellow-200"
+                href="/water/introduction"
+                nextText="New section: 'water'"
+                cookieName="members"
+                names="1.2.3.4.5+"
+                classes="border-pink-300 border-purple-400 border-indigo-700 border-green-500 border-yellow-200"
             >
-                <h1 class="text-2xl text-blue-200">
-                    Hey there. What's your gender?
-                </h1>
+                <h1 class="text-2xl text-blue-200">Family member count?</h1>
             </MultipleChoice>
         );
     }
 }
+
 export async function getServerSideProps(ctx) {
     console.log();
-    nookies.set(ctx, "lastSection", "/intro/gender", {
+    nookies.set(ctx, "lastSection", "/intro/members", {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
     });
