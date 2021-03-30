@@ -24,7 +24,7 @@ export default class extends Component {
                             scale: 0.8,
                         }}
                     >
-                        Back to Home.
+                        return home.
                     </motion.a>
                 </Link>
             </>
@@ -35,16 +35,9 @@ export default class extends Component {
 export const getServerSideProps = async (ctx) => {
     const cookies = await nookies.get(ctx);
     console.log(cookies);
-    let water = {};
-    if (cookies.shower) {
-        water.gallons = cookies.shower * 8;
-        water.yearly = water.gallons * 365;
-        water.price = (water.yearly / 1000) * 1.5;
-    }
     return {
         props: {
             ...cookies,
-            water,
         },
     };
 };
