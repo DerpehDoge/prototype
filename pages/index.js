@@ -12,10 +12,10 @@ function CondConf(props) {
             <Confetti
                 height={props.height}
                 width={props.width}
-                initialVelocityX={3}
+                initialVelocityX={10}
                 gravity={0.2}
                 recycle={false}
-                numberOfPieces={400}
+                numberOfPieces={2000}
                 // colors={[
                 //     "#de6161",
                 //     "#e0516e",

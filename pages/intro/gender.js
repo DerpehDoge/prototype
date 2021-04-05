@@ -14,7 +14,7 @@ export default class Home extends React.Component {
                 names="Male.Female.Attack Helicopter.Prefer not to say.Other"
                 classes="border-blue-200 border-red-200 border-gray-700 border-purple-400 border-yellow-200"
             >
-                <h1 class="text-2xl text-blue-200">
+                <h1 class="text-2xl text-blue-500 dark:text-blue-200">
                     Hey there. What's your gender?
                 </h1>
             </MultipleChoice>

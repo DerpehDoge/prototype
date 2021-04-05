@@ -1,4 +1,4 @@
-import MultipleChoice from "../../components/MultipleChoice";
+import Range from "../../components/Range";
 import nookies from "nookies";
 
 export default class Home extends React.Component {
@@ -8,15 +8,11 @@ export default class Home extends React.Component {
     }
     render() {
         return (
-            <MultipleChoice
-                href="/intro/members"
-                nextText="Head  to members."
-                cookieName="age"
-                names="13-25.25-35.35-50.50-60.60+"
-                classes="border-blue-300 border-blue-400 border-blue-500 border-blue-600 border-blue-700"
-            >
-                <h1 class="text-2xl text-blue-200">How old are you?</h1>
-            </MultipleChoice>
+            <>
+                <Range>
+                    <h1>How old are you?</h1>
+                </Range>
+            </>
         );
     }
 }

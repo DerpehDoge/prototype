@@ -1,63 +1,17 @@
-import { motion } from "framer-motion";
-import React from "react";
+import TextInput from "../../components/TextInput";
 import nookies from "nookies";
-import { parseCookies, setCookie } from "nookies";
-import Link from "next/link";
-import anime from "animejs";
-import { useRouter } from "next/router";
-import Router from "next/router";
 
-export default class A extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    finishSection(event) {
-        event.preventDefault();
-        let cookies = parseCookies();
-        let sections = cookies.sections.split(",");
-        if (sections.includes("name") == false) {
-            sections.push("name");
-        }
-        setCookie(null, "sections", sections.join(","));
-        console.log("section finished");
-        anime({
-            targets: ".nTex",
-            opacity: 0.25,
-        });
-        anime({
-            targets: "#formKEK",
-            scale: 1.5,
-            easing: "easeOutExpo",
-            duration: 500,
-            y: -60,
-        });
-        setTimeout(() => Router.replace("/intro/gender"), 750);
-    }
-
-    setName(event) {
-        setCookie(null, "name", event.target.value, {
-            maxAge: 30 * 24 * 60 * 60,
-            path: "/",
-        });
-        console.log(event.target.value);
-    }
-
+export default class Name extends React.Component {
     render() {
         return (
-            <>
-                <h1 className="text-5xl nTex">Hey there.</h1>
-                <h2 className="my-4 text-2xl nTex">What's your name?</h2>
-                <form id="formKEK" onSubmit={this.finishSection}>
-                    <input
-                        type="text"
-                        className="my-4 bg-transparent dark:text-white text-center font-mono border-opacity-25 p-2 text-2xl border-blue-500 border-2 rounded-md outline-none"
-                        autoComplete="off"
-                        placeholder={this.props.name}
-                        onChange={this.setName}
-                    />
-                </form>
-            </>
+            <TextInput
+                placeholder={this.props.name ? this.props.name : ""}
+                cookie="name"
+                target="/intro/gender"
+            >
+                <h1 className="text-5xl">Welcome.</h1>
+                <h2 className="text-2xl mt-3">What's your name?</h2>
+            </TextInput>
         );
     }
 }

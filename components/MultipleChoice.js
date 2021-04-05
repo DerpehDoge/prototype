@@ -5,7 +5,9 @@ import Link from "next/link";
 export default class MultipleChoice extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            selected: "nothing",
+        };
     }
 
     render() {
@@ -22,6 +24,7 @@ export default class MultipleChoice extends Component {
         classes = classes.split(" ");
         return (
             <>
+                <div>{this.props.children}</div>
                 <motion.div
                     initial={{
                         opacity: 0,
@@ -29,8 +32,8 @@ export default class MultipleChoice extends Component {
                     animate={{
                         opacity: 1,
                     }}
+                    className="w-4/12"
                 >
-                    {this.props.children}
                     <br className="select-none" />
                     <ul>
                         {names.map((a) => {
@@ -65,17 +68,23 @@ export default class MultipleChoice extends Component {
                                     }}
                                     onClick={() => {
                                         this.setState({
-                                            selected: a,
+                                            selected: names.indexOf(a) + 1,
                                         });
-                                        setCookie(null, cookieName, a, {
-                                            maxAge: 30 * 24 * 60 * 60,
-                                            path: "/",
-                                        });
+                                        setCookie(
+                                            null,
+                                            cookieName,
+                                            names.indexOf(a) + 1,
+                                            {
+                                                maxAge: 30 * 24 * 60 * 60,
+                                                path: "/",
+                                            }
+                                        );
                                     }}
                                 >
                                     <span
                                         className={
-                                            this.state.selected == a
+                                            this.state.selected ==
+                                            names.indexOf(a) + 1
                                                 ? "text-black dark:text-white"
                                                 : `text-gray-600 dark:text-gray-400`
                                         }
@@ -87,7 +96,7 @@ export default class MultipleChoice extends Component {
                         })}
                     </ul>
                 </motion.div>
-                {this.state.selected && (
+                {this.state.selected !== "nothing" && (
                     <Link href="/">
                         <div>
                             <a
