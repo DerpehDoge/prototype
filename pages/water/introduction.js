@@ -5,7 +5,9 @@ import Tooltip from "@material-ui/core/Tooltip";
 export default function Egg() {
     return (
         <>
-            <h1 className="text-blue-300 text-3xl">Water.</h1>
+            <h1 className="text-blue-300 text-3xl transform hover:rotate-6 transition ease-out duration-200">
+                Water.
+            </h1>
             <div className="text-l mt-5 text-center">
                 <h1>Water is found all around us.</h1>
                 <h1>From the seas and lakes, from the food we eat,</h1>
@@ -28,14 +30,16 @@ export default function Egg() {
                             </a>
                         }
                     >
-                        <h1 className="text-yellow-100 inline">
+                        <h1 className="text-yellow-500 dark:text-yellow-100 inline">
                             1.8 billion people
                         </h1>
                     </Tooltip>{" "}
                     don't have access to clean water.
                 </h1>
                 <br />
-                <h1>On that note, let's keep going.</h1>
+                <h1 className="text-red-500">
+                    On that note, let's keep going.
+                </h1>
             </div>
             <br />
             <Link href="shower">

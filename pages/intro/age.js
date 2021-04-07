@@ -1,16 +1,24 @@
 import Range from "../../components/Range";
 import nookies from "nookies";
+import Confetti from "react-confetti";
 
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
+
     render() {
         return (
             <>
-                <Range>
-                    <h1>How old are you?</h1>
+                <Range
+                    cookie="age"
+                    min="13"
+                    max="100"
+                    href="members"
+                    text="Head to the members page?"
+                >
+                    <h1 className="font-mono text-3xl">How old are you?</h1>
                 </Range>
             </>
         );
