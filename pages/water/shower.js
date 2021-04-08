@@ -10,8 +10,8 @@ export default class Home extends React.Component {
     render() {
         return (
             <MultipleChoice
-                href="/"
-                nextText="Head home."
+                href="/water/showerData"
+                nextText="First data checkpoint."
                 cookieName="shower"
                 names={"4-6,6-8,8-10,10-12,12+,I don't take showers".split(",")}
                 classes="border-green-500 border-green-300 border-yellow-100 border-red-300 border-red-500"

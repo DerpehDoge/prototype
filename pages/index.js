@@ -157,15 +157,6 @@ export default class HomePage extends Component {
                         </Link>
                     )}
                     <br />
-                    <Link href="/data">
-                        <motion.a
-                            whileTap={{
-                                scale: 0.8,
-                            }}
-                        >
-                            wanna see the data?
-                        </motion.a>
-                    </Link>
                 </motion.div>
                 <br />
             </>

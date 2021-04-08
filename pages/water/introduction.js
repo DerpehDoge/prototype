@@ -1,6 +1,7 @@
 import Typewriter from "typewriter-effect";
 import Link from "next/link";
 import Tooltip from "@material-ui/core/Tooltip";
+import Source from "../../components/Source";
 
 export default function Egg() {
     return (
@@ -17,23 +18,14 @@ export default function Egg() {
                 <h1>However, some people may not have access to water.</h1>
                 <h1> Others have it and abuse it.</h1>
                 <h1>
-                    <Tooltip
-                        interactive
-                        title={
-                            <a
-                                href="https://www.cdc.gov/healthywater/global/wash_statistics.html#:~:text=An%20estimated%201.8%20billion%20people,access%20to%20adequate%20sanitation%2015."
-                                target="_blank"
-                            >
-                                Global WASH Fast Facts. 2021,
-                                www.cdc.gov/healthywater/global/wash_statistics.html#:~:text=An%20estimated%201.8%20billion%20people,access%20to%20adequate%20sanitation%2015..
-                                Accessed 24 Mar. 2021. ‌
-                            </a>
-                        }
+                    <Source
+                        href="https://www.cdc.gov/healthywater/global/wash_statistics.html#:~:text=An%20estimated%201.8%20billion%20people,access%20to%20adequate%20sanitation%2015."
+                        citation="Global WASH Fast Facts. 2021,
+                    www.cdc.gov/healthywater/global/wash_statistics.html#:~:text=An%20estimated%201.8%20billion%20people,access%20to%20adequate%20sanitation%2015..
+                    Accessed 24 Mar. 2021."
                     >
-                        <h1 className="text-yellow-500 dark:text-yellow-100 inline">
-                            1.8 billion people
-                        </h1>
-                    </Tooltip>{" "}
+                        1.8 billion people
+                    </Source>
                     don't have access to clean water.
                 </h1>
                 <br />

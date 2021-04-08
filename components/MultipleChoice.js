@@ -86,7 +86,7 @@ export default class MultipleChoice extends Component {
                                             this.state.selected ==
                                             names.indexOf(a) + 1
                                                 ? "text-black dark:text-white"
-                                                : `text-gray-600 dark:text-gray-400`
+                                                : `text-gray-400 dark:text-gray-400`
                                         }
                                     >
                                         {a}
