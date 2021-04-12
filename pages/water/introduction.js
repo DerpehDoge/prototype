@@ -1,4 +1,3 @@
-import Typewriter from "typewriter-effect";
 import Link from "next/link";
 import Tooltip from "@material-ui/core/Tooltip";
 import Source from "../../components/Source";
@@ -29,14 +28,14 @@ export default function Egg() {
                     don't have access to clean water.
                 </h1>
                 <br />
-                <h1 className="text-red-500">
+                <h1 className="text-red-400 dark:text-red-200">
                     On that note, let's keep going.
                 </h1>
             </div>
             <br />
             <Link href="shower">
                 <a class="text-green-300 transform hover:scale-125 transition ease-out duration-200">
-                    sure, let's keep going.
+                    ok
                 </a>
             </Link>
         </>

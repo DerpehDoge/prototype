@@ -6,7 +6,7 @@ import { parseCookies, setCookie } from "nookies";
 export default class Range extends Component {
     constructor(props) {
         super(props);
-        this.state = { width: 0, height: 0 };
+        this.state = { width: 0, height: 0, amount: this.props.min };
         this.change = this.change.bind(this);
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
@@ -62,8 +62,12 @@ export default class Range extends Component {
                     style={{
                         transform: `rotate(${
                             (this.state.amount - this.props.min) *
-                            (this.props.max / 1250)
-                        }deg) scale(${this.state.amount / 120 + 1})`,
+                            (10 / (this.props.max - this.props.min))
+                        }deg) scale(${
+                            this.state.amount *
+                                (0.7 / (this.props.max - this.props.min)) +
+                            1
+                        })`,
                     }}
                 >
                     {this.props.children}

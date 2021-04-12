@@ -15,8 +15,8 @@ export default class Home extends React.Component {
                     cookie="age"
                     min="13"
                     max="100"
-                    href="members"
-                    text="Head to the members page?"
+                    href="/water/introduction"
+                    text="Heading to next section."
                 >
                     <h1 className="font-mono text-3xl">How old are you?</h1>
                 </Range>

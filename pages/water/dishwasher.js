@@ -1,6 +1,6 @@
 import nookies from "nookies";
 import Tooltip from "@material-ui/core/Tooltip";
-import MultipleChoice from "../../components/MultipleChoice";
+import Range from "../../components/Range";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -9,17 +9,18 @@ export default class Home extends React.Component {
     }
     render() {
         return (
-            <MultipleChoice
-                href="/water/dishwasher"
-                nextText="dish washer."
-                cookieName="toilet"
-                names={"1,2,3,4,5".split(",")}
-                classes="border-blue-200 border-blue-300 border-blue-400 border-blue-500 border-blue-600"
+            <Range
+                cookie="dishwasher"
+                min="0"
+                max="10"
+                href="/water/waterData"
+                text="water time B)"
             >
-                <h1>
-                    How many times would you say you use the toilet in a day?
+                <h1 className="font-mono text-3xl">
+                    How often do you say that you use
+                    <br /> the dishwasher in a month?
                 </h1>
-            </MultipleChoice>
+            </Range>
         );
     }
 }

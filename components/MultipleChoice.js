@@ -54,8 +54,12 @@ export default class MultipleChoice extends Component {
                                     key={a}
                                     whileHover={{
                                         originX: 0,
-                                        scale: 1.3,
-                                        letterSpacing: "1.2px",
+                                        scale: 1.2,
+                                        letterSpacing: "2px",
+                                    }}
+                                    whileTap={{
+                                        scale: 1.1,
+                                        letterSpacing: "1.8px",
                                     }}
                                     className={`my-4 select-none font-mono cursor-pointer border-l-4 pl-5 text-2xl ${
                                         classes[names.indexOf(a)]
