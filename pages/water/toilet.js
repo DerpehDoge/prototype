@@ -10,15 +10,15 @@ export default class Home extends React.Component {
     render() {
         return (
             <MultipleChoice
-                href="/water/toilet"
-                nextText="toilet time."
-                cookieName="shower"
-                names={"3 minutes,5 minutes,7 minutes,9 minutes,11+ minutes,I don't take showers".split(
-                    ","
-                )}
-                classes="border-green-500 border-green-300 border-yellow-100 border-red-300 border-red-500"
+                href="/water/waterData"
+                nextText="First data checkpoint."
+                cookieName="toilet"
+                names={"1,2,3,4,5".split(",")}
+                classes="border-blue-200 border-blue-300 border-blue-400 border-blue-500 border-blue-600"
             >
-                <h1 className="text-3xl">How long do you take showers for?</h1>
+                <h1>
+                    How many times would you say you use the toilet in a day?
+                </h1>
             </MultipleChoice>
         );
     }

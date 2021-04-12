@@ -37,11 +37,11 @@ export default class Range extends Component {
     render() {
         return (
             <>
-                {/* {this.state.amount == 69 && (
+                {this.state.amount == 69 && (
                     <Confetti
                         height={this.props.height}
                         width={this.props.width}
-                        initialVelocityX={10}
+                        initialVelocityY={-10}
                         gravity={0.2}
                         recycle={false}
                         numberOfPieces={2000}
@@ -56,13 +56,13 @@ export default class Range extends Component {
                         //     "#2657eb",
                         // ]}
                     />
-                )} */}
+                )}
                 <div
                     className="text-center transition-transform duration-500 ease-out"
                     style={{
                         transform: `rotate(${
                             (this.state.amount - this.props.min) *
-                            (this.props.max / 750)
+                            (this.props.max / 1250)
                         }deg) scale(${this.state.amount / 120 + 1})`,
                     }}
                 >

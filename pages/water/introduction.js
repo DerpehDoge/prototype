@@ -36,7 +36,7 @@ export default function Egg() {
             <br />
             <Link href="shower">
                 <a class="text-green-300 transform hover:scale-125 transition ease-out duration-200">
-                    sure, let's keep going
+                    sure, let's keep going.
                 </a>
             </Link>
         </>

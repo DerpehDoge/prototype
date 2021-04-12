@@ -2,6 +2,8 @@ import { Component } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import nookies, { setCookie, getCookie } from "nookies";
+import Head from "next/head";
+
 
 export default class extends Component {
     constructor(props) {

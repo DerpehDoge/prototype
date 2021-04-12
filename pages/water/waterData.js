@@ -3,7 +3,7 @@ import React from "react";
 import Source from "../../components/Source";
 import Tooltip from "@material-ui/core/Tooltip";
 
-class Emphasis extends React.Component {
+class E extends React.Component {
     render() {
         return (
             <span className="dark:text-blue-300 text-blue-500 italic font-bold">
@@ -16,19 +16,9 @@ class Emphasis extends React.Component {
 export default class Data extends React.Component {
     render() {
         let { shower, age, members } = this.props;
-        shower = parseInt(shower);
-        let sMin, sMax;
-        if (shower < 5) {
-            [sMin, sMax] = "4-6,6-8,8-10,10-12"
-                .split(",")
-                [shower - 1].split("-");
-        } else if (shower == 5) {
-            sMin = 12;
-        } else {
-        }
-        console.log(sMin, sMax);
+        shower = "3,5,7,9,11,0".split(",")[shower];
         return (
-            <div className="font-mono">
+            <div className="font-mono select-text">
                 <h1>
                     The average household showerhead uses{" "}
                     <Source
@@ -40,23 +30,29 @@ export default class Data extends React.Component {
                 </h1>
                 {shower !== 6 && (
                     <h2>
-                        If you showered every day, this would equate to about{" "}
-                        <Emphasis>30 showers per day.</Emphasis>
+                        <E>NOTE: These are estimates.</E>
+                        <br /> If you showered every day, this would equate to
+                        about <E>30 showers per day.</E>
                         <br />
-                        Every year would be <Emphasis>365</Emphasis> per year.{" "}
-                        <br />
+                        Every year would be <E>365</E> per year. <br />
                         Since you're {this.props.age} years old, this would
-                        equate to <Emphasis>{365 * this.props.age}</Emphasis>{" "}
-                        showers.
+                        equate to <E>{365 * this.props.age}</E> showers.
                         <br />
                         You ALSO mentioned that you take{" "}
-                        <Emphasis>
-                            {`${sMin}${shower < 5 ? "-" : ""}${
-                                sMax ? sMax : shower == 6 ? "" : "+"
-                            }`}{" "}
-                            minute long
-                        </Emphasis>{" "}
-                        showers.
+                        <E>{shower} minute long</E> showers.
+                        <br /> This means that every shower, you use{" "}
+                        <E>{shower * 2.5} gallons.</E>
+                        <br />
+                        Every month is <E>{shower * 2.5 * 30} gallons</E>,
+                        <br />
+                        and every year is{" "}
+                        <E>{shower * 2.5 * 30 * 365} gallons</E>,
+                        <br />
+                        ending up at{" "}
+                        <E>
+                            {shower * 2.5 * 60 * 365 * this.props.age} gallons
+                        </E>{" "}
+                        in your lifetime.
                     </h2>
                 )}
             </div>
@@ -65,7 +61,7 @@ export default class Data extends React.Component {
 }
 
 export async function getServerSideProps(ctx) {
-    nookies.set(ctx, "lastSection", "/water/showerData", {
+    nookies.set(ctx, "lastSection", "/water/waterData", {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
     });
