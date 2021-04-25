@@ -1,7 +1,37 @@
+import { motion } from "framer-motion";
 import nookies, { setCookie } from "nookies";
 import React from "react";
 import Source from "../../components/Source";
 import Tooltip from "@material-ui/core/Tooltip";
+
+class TD extends React.Component {
+    render() {
+        return (
+            <motion.td
+                className={this.props.className ? this.props.className : "td"}
+            >
+                <motion.div
+                    whileHover={{
+                        padding: "20px",
+                        scale: 1.3,
+                    }}
+                    className="text"
+                    whileTap={{
+                        scale: 1.1,
+                        padding: "10px",
+                    }}
+                    transition={{
+                        ease: "backOut",
+                        // ease: [0.16, 1, 0.3, 1],
+                        duration: 0.3,
+                    }}
+                >
+                    {this.props.children}
+                </motion.div>
+            </motion.td>
+        );
+    }
+}
 
 class E extends React.Component {
     render() {
@@ -13,13 +43,19 @@ class E extends React.Component {
     }
 }
 
-export default class Data extends React.Component {
+export default class data extends React.Component {
     render() {
-        let { shower, age, toilet, dishwasher } = this.props;
-        shower = "3,5,7,9,11,0".split(",")[shower];
+        let { shower, age, toilet, dishwasher, drinking } = this.props;
+        shower = parseInt("3,5,7,9,11,0".split(",")[shower - 1]);
+        toilet = parseInt(toilet);
+        dishwasher = parseInt(dishwasher);
+        drinking = parseInt(drinking) * 0.0625;
+        let dailyWater = parseInt(
+            shower * 2.5 + toilet * 1.5 + (dishwasher / 30) * 6 + drinking
+        );
         return (
             <>
-                <style jsx>
+                <style jsx global>
                     {`
                         th {
                             padding: 16px;
@@ -39,51 +75,57 @@ export default class Data extends React.Component {
                         }
                     `}
                 </style>
+                <h1 className="text-5xl font-mono m-5">
+                    NOTE: all numbers are in gallons.
+                </h1>
                 <table className="text-center text-2xl">
                     <tr>
                         <th></th>
                         <th>1 day</th>
                         <th>1 month</th>
                         <th>1 year</th>
-                        <th>lifetime</th>
+                        <th>10 years</th>
+                        <th>{this.props.age} years</th>
                     </tr>
                     <tr>
                         <td className="row">shower usage</td>
-                        <td>{shower * 2.5}</td>
-                        <td>{shower * 2.5 * 30}</td>
-                        <td>{shower * 2.5 * 365}</td>
-                        <td>{shower * 2.5 * 365 * age}</td>
+                        <TD>{shower * 2.5}</TD>
+                        <TD>{shower * 2.5 * 30}</TD>
+                        <TD>{shower * 2.5 * 365}</TD>
+                        <TD>{shower * 2.5 * 265 * 10}</TD>
+                        <TD>{shower * 2.5 * 365 * age}</TD>
                     </tr>
                     <tr>
                         <td className="row">toilet usage</td>
-                        <td>{toilet * 1.5}</td>
-                        <td>{toilet * 1.5 * 30}</td>
-                        <td>{toilet * 1.5 * 365}</td>
-                        <td>{toilet * 1.5 * 365 * age}</td>
+                        <TD>{toilet * 1.5}</TD>
+                        <TD>{toilet * 1.5 * 30}</TD>
+                        <TD>{toilet * 1.5 * 365}</TD>
+                        <TD>{toilet * 1.5 * 365 * 10}</TD>
+                        <TD>{toilet * 1.5 * 365 * age}</TD>
                     </tr>
                     <tr>
                         <td className="row">dishwasher usage</td>
-                        <td>{dishwasher / 10}</td>
-                        <td>{dishwasher * 3}</td>
-                        <td>{12 * (dishwasher * 3)}</td>
-                        <td>{12 * age * (dishwasher * 3)}</td>
+                        <TD>{((dishwasher / 30) * 6).toFixed(2)}</TD>
+                        <TD>{dishwasher * 6}</TD>
+                        <TD>{12 * (dishwasher * 6)}</TD>
+                        <TD>{12 * (dishwasher * 6) * 10}</TD>
+                        <TD>{12 * age * (dishwasher * 6)}</TD>
+                    </tr>
+                    <tr>
+                        <td className="row">drinking usage</td>
+                        <TD>{drinking.toFixed(2)}</TD>
+                        <TD>{(drinking * 30).toFixed(2)}</TD>
+                        <TD>{(drinking * 365).toFixed(2)}</TD>
+                        <TD>{(drinking * 365 * 10).toFixed(2)}</TD>
+                        <TD>{(drinking * age * 365).toFixed(2)}</TD>
                     </tr>
                     <tr>
                         <td className="row">total</td>
-                        <td>{shower * 2.5 + toilet * 1.5 + dishwasher / 10}</td>
-                        <td>
-                            {30 *
-                                (shower * 2.5 + toilet * 1.5 + dishwasher / 1)}
-                        </td>
-                        <td>
-                            {365 *
-                                (shower * 2.5 + toilet * 1.5 + dishwasher / 1)}
-                        </td>
-                        <td>
-                            {365 *
-                                age *
-                                (shower * 2.5 + toilet * 1.5 + dishwasher / 1)}
-                        </td>
+                        <TD>{dailyWater}</TD>
+                        <TD>{dailyWater * 30}</TD>
+                        <TD>{dailyWater * 365}</TD>
+                        <TD>{365 * dailyWater * 10}</TD>
+                        <TD>{365 * age * dailyWater}</TD>
                     </tr>
                 </table>
             </>
@@ -92,7 +134,7 @@ export default class Data extends React.Component {
 }
 
 export async function getServerSideProps(ctx) {
-    nookies.set(ctx, "lastSection", "/water/waterData", {
+    nookies.set(ctx, "lastSection", "/water/waterTD", {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
     });

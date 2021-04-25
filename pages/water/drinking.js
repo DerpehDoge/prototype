@@ -1,5 +1,4 @@
 import nookies from "nookies";
-import Tooltip from "@material-ui/core/Tooltip";
 import Range from "../../components/Range";
 
 export default class Home extends React.Component {
@@ -10,15 +9,15 @@ export default class Home extends React.Component {
     render() {
         return (
             <Range
-                cookie="dishwasher"
+                cookie="drinking"
                 min="0"
-                max="50"
-                href="/water/drinking"
-                text="water time B)"
+                max="30"
+                href="/water/waterData"
+                text="yay data"
             >
                 <h1 className="font-mono text-3xl">
-                    How often do you say that you use
-                    <br /> the dishwasher in a month?
+                    How many glasses of water
+                    <br /> do you drink per day?
                 </h1>
             </Range>
         );
